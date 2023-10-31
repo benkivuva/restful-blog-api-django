@@ -51,3 +51,5 @@ Pipfile.lock
 
 # Ignore node modules (if you're using npm or yarn for frontend assets)
 node_modules/
+
+.coverage
