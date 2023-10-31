@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'blog',
     'blog_api',
     'rest_framework',
-    'corsheaders'
+    'corsheaders',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -125,8 +126,11 @@ STATIC_URL = 'static/'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
-    ]
+        'rest_framework.permissions.AllowAny',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
 }
 
 # Default primary key field type
