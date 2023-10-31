@@ -5,8 +5,10 @@ from blog.models import Post, Category
 from django.contrib.auth.models import User
 from rest_framework.test import APIClient
 
-
 class PostTests(APITestCase):
+    """
+    Test cases for the Post model API.
+    """
 
     def test_view_posts(self):
         """
@@ -23,7 +25,6 @@ class PostTests(APITestCase):
         self.test_category = Category.objects.create(name='django')
         self.testuser1 = User.objects.create_superuser(
             username='test_user1', password='123456789')
-        # self.testuser1.is_staff = True
 
         self.client.login(username=self.testuser1.username,
                           password='123456789')
@@ -35,6 +36,9 @@ class PostTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     def test_post_update(self):
+        """
+        Ensure we can update a Post object.
+        """
 
         client = APIClient()
 
@@ -49,7 +53,7 @@ class PostTests(APITestCase):
         client.login(username=self.testuser1.username,
                      password='123456789')
 
-        url = reverse(('blog_api:detailcreate'), kwargs={'pk': 1})
+        url = reverse('blog_api:detailcreate', kwargs={'pk': 1})
 
         response = client.put(
             url, {
